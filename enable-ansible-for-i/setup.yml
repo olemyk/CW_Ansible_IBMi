@@ -62,7 +62,7 @@
       raw: echo 'export PATH' >> $HOME/.profile
       args:
         executable: /qopensys/usr/bin/qsh
-    when: yum_installed == true and
+    when: yum_installed == true
 
   - name: change SSHD server auto-started
     command: 'system "chgtcpsvr svrspcval(*sshd) autostart(*yes)"'
