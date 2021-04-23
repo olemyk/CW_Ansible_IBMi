@@ -28,7 +28,7 @@
         with_list: "{{ required_rpms }}"     
       
     vars:
-      required_rpms: [python3, itoolkit, ibm_db]
+      required_rpms: [itoolkit, ibm_db]
       python_version: "{{ ansible_python_interpreter.split('/')[-1].split('.')[0] }}"
 
   - block:

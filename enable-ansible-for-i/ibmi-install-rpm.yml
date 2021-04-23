@@ -9,6 +9,11 @@
   register: package_query_result
   ignore_errors: true
 
+- name: Install {{ python }} if it is not installed
+  raw: /QOpensys/pkgs/bin/yum install {{ python }} -y
+  #when: '"{{ python }}-{{ item }}" not in package_query_result.stdout'
+  when: package_name not in package_query_result.stdout
+
 - name: Install {{ item }} if it is not installed
   raw: /QOpensys/pkgs/bin/yum install {{ python }}-{{ item }} -y
   #when: '"{{ python }}-{{ item }}" not in package_query_result.stdout'
