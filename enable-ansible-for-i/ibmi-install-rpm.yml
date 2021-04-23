@@ -4,6 +4,9 @@
 - set_fact:
     package_name: "{{ python }}-{{ item }}"
 
+- set_fact:
+    python: "{{ python }}"
+
 - name: Verify {{ python }} installed
   raw: /QOpensys/pkgs/bin/yum list installed | grep {{ python }}
   register: python_query_result
@@ -12,7 +15,7 @@
 - name: Install {{ python }} if it is not installed
   raw: /QOpensys/pkgs/bin/yum install {{ python }} -y
   #when: '"{{ python }}-{{ item }}" not in package_query_result.stdout'
-  when: {{ python }} not in python_query_result.stdout
+  when: python not in python_query_result.stdout
 
 - name: Verify {{ item }} installed
   raw: /QOpensys/pkgs/bin/yum list installed | grep {{ package_name }}
